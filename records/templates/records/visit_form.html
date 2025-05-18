@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Записати на прийом</title>
+</head>
+<body>
+    <h1>Записати на прийом</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Створити візит</button>
+    </form>
+
+    <p><a href="{% url 'records:list_visits' %}">← Повернутися до списку візитів</a></p>
+</body>
+</html>

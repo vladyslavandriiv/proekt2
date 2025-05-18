@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список лікарів</title>
+</head>
+<body>
+    <h1>Список лікарів</h1>
+
+    {% if doctors %}
+        <ul>
+            {% for doctor in doctors %}
+                <li>
+                    {{ doctor.name }}{% if doctor.specialization %} — {{ doctor.specialization }}{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Лікарі ще не додані.</p>
+    {% endif %}
+
+    <p><a href="{% url 'records:create_doctor' %}">Додати нового лікаря</a></p>
+    <p><a href="{% url 'records:dashboard' %}">← Повернутися до панелі</a></p>
+</body>
+</html>

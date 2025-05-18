@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Your Animals</h2>
+    <ul>
+        {% for animal in animals %}
+            <li>
+                {{ animal.name }} ({{ animal.species }})
+                - <a href="{% url 'update_animal' animal.id %}">Edit</a>
+                - <a href="{% url 'delete_animal' animal.id %}">Delete</a>
+                - <a href="{% url 'generate_pdf' animal.id %}">PDF</a>
+            </li>
+        {% empty %}
+            <li>No animals found.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_animal' %}">Add Animal</a>
+    <br>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

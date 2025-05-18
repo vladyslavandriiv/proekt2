@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список візитів</title>
+</head>
+<body>
+    <h1>Список візитів</h1>
+
+    {% if visits %}
+        <ul>
+            {% for visit in visits %}
+                <li>
+                    {{ visit.date }}:
+                    Тварина «{{ visit.animal.name }}»
+                    {% if visit.doctor %} — лікар: {{ visit.doctor.name }}{% endif %}
+                    {% if visit.notes %} ({{ visit.notes }}){% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Немає жодного візиту.</p>
+    {% endif %}
+
+    <p><a href="{% url 'records:create_visit' %}">Додати новий візит</a></p>
+    <p><a href="{% url 'records:dashboard' %}">← Повернутися до панелі</a></p>
+</body>
+</html>

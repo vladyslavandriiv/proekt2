@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF – {{ animal.name }}</title>
+  <style>
+    @font-face {
+      font-family: "DejaVuSans";
+      /* Використовуємо відносний шлях через статичні файли Django */
+      src: url("{% static 'fonts/DejaVuSans.ttf' %}") format("truetype");
+    }
+
+    body {
+      font-family: "DejaVuSans", sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ animal.name }} ({{ animal.species }})</h1>
+  <p><strong>Вік:</strong> {{ animal.age }} років</p>
+  <p><strong>Вага:</strong> {{ animal.weight }} кг</p>
+  <p><strong>Зріст:</strong> {{ animal.height }} см</p>
+  <h2>Історія хвороб</h2>
+  <p>{{ animal.medical_history|linebreaks }}</p>
+  <h2>Візити</h2>
+  <ul>
+    {% for visit in visits %}
+      <li>{{ visit.visit_date }} — лікар: {{ visit.doctor.name }}; {{ visit.notes }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

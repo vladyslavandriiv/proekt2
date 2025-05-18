@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Історія візитів — {{ animal.name }}</title>
+    <style>
+      @font-face {
+        font-family: 'DejaVuSans';
+        src: url("{% static 'fonts/DejaVuSans.ttf' %}") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+      body {
+        font-family: 'DejaVuSans', sans-serif;
+      }
+    </style>
+</head>
+<body>
+    <h1>Візити тварини: {{ animal.name }}</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Дата</th><th>Лікар</th><th>Опис</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for v in visits %}
+        <tr>
+          <td>{{ v.date }}</td>
+          <td>{{ v.doctor }}</td>
+          <td>{{ v.notes }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animal PDF</title>
+</head>
+<body>
+    <h2>Animal Information</h2>
+    <p><strong>Name:</strong> {{ animal.name }}</p>
+    <p><strong>Species:</strong> {{ animal.species }}</p>
+
+    <h3>Visits</h3>
+    <ul>
+        {% for visit in visits %}
+            <li>{{ visit.date }} - {{ visit.reason }}</li>
+        {% empty %}
+            <li>No visits found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

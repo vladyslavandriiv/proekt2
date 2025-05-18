@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати лікаря</title>
+</head>
+<body>
+    <h1>Додати лікаря</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Додати лікаря</button>
+    </form>
+
+    <p><a href="{% url 'records:list_doctors' %}">← Повернутися до списку лікарів</a></p>
+</body>
+</html>
